@@ -166,7 +166,7 @@ GET /high_priority_index/_recovery?pretty=true
 
 For more information, see [Indices Recovery](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-recovery.html#indices-recovery).
 
-> [AZURE.NOTE] A cluster with shards that require recovery will have a status of *yellow* to indicate that not all shards are currently available. When all the shards are available, the cluster status should revert to *green*. A cluster with a status of *red* indicates that one or more shards are physically missing, it may be necessary to restore data from a backup.
+> [AZURE.NOTE] A cluster with shards that require recovery will have a status of *yellow* to indicate that not all shards are currently available, but at least one replica for each shard is available. When all the shards are available, the cluster status should revert to *green*. A cluster with a status of *red* indicates that one or more shards currently have *all* replicas unavailable. Elasticsearch prioritizes a fast transition from *red* to *yellow*, attempting to ensure there is at least one copy of all data online. Extended periods of a *red* cluster status likely indicates shards in which all replicas are physically missing, and it may be necessary to restore data from a backup.
 
 ## Preventing split brain 
 
